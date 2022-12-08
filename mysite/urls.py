@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+#blog アプリからURLをインポートするだけ
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), #admin/ で始まる全てのURLについて、Djangoが返すべきビューをこの行で指定
+    path('', include('blog.urls')), #blog.urls をインポートする。'http://127.0.0.1:8000/' に来たリクエストは blog.urls へリダイレクトするようになる
 ]
