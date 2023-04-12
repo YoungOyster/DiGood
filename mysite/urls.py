@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls), #admin/ で始まる全てのURLについて、Djangoが返すべきビューをこの行で指定
     path('', include('blog.urls')), #blog.urls をインポートする。'http://127.0.0.1:8000/' に来たリクエストは blog.urls へリダイレクトするようになる
+    path('view/', include('blog.urls')),
+    path('server/', include('blog.urls'))
 ]
