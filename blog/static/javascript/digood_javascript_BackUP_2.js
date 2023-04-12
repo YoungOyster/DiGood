@@ -76,10 +76,11 @@ function receiveCoordsFromServer() {
         //DBの座標にハートマーク表示
         const heart = document.createElement('div');//追加する要素を生成
         heart.innerHTML = '&#128147;';
-        heart.style.position = 'absolute';
+        heart.style.position = 'inherit';
         heart.style.top = original_X + 'px';
         heart.style.left = original_Y + 'px';
-        document.body.appendChild(heart);
+        const append_div = document.getElementsByClassName('layout')
+        append_div[0].appendChild(heart);
       }
       // 変数に格納したHTMLを出力
       document.getElementById('container').innerHTML = html;
