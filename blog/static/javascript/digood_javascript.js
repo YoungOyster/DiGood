@@ -64,6 +64,8 @@ $('#img').click(function(event) {
 });
 
 
+// 画面読み込み時にサーバーから取ってきた方がいい？
+//→  window.onload = onLoad;
 
 
 // サーバーから座標とサイズを受信する関数
@@ -77,8 +79,8 @@ function receiveCoordsFromServer() {
       let html = '';
       console.log(response[0])
       const image = document.getElementById('img');
-      const original_Width = image.naturalWidth;
-      const original_Height = image.naturalHeight;
+      const original_Width = image.width;
+      const original_Height = image.height;
       for(let i = 0; i < response.length; i++){
         x = response[i][0];
         y = response[i][1];
@@ -90,22 +92,30 @@ function receiveCoordsFromServer() {
         html += htmlParts;
         //DBの座標にハートマーク表示
         const DisplayMark = document.createElement('div');
-        DisplayMark.innerHTML = mark;
+        // DisplayMark.innerHTML = mark;
+        DisplayMark.innerHTML = response[i][4];
         DisplayMark.style.position = 'absolute';
-        DisplayMark.style.top = y + 'px';
-        DisplayMark.style.left = x + 'px';
-        document.body.appendChild(DisplayMark);
-        // if (ON_OFF){
-        //   document.querySelector('layout').appendChild(DisplayMark);
-        //   // 変数に格納したHTMLを出力
-        //   document.getElementById('container').innerHTML = html;
-        // }
-        // else{
-
-        // }
+        DisplayMark.style.top = original_Y + 'px';
+        DisplayMark.style.left = original_X + 'px';
+        document.getElementById('container').innerHTML = html;
+        const append_div = document.getElementsByClassName('layout');
+        if (ON_OFF){
+          // document.querySelector('layout').appendChild(DisplayMark);
+          document.getElementById('main').appendChild(DisplayMark);
+          // append_div[0].appendChild(DisplayMark);
+          // 変数に格納したHTMLを出力
+        }
+        else{
+          // マークを削除
+          //styleのdisplayの値を変更するかvisibleで切り替えるかもある。
+          //visibleを使うと空間は空いたままになるからdisplayよりそっちの方がいいかも。
+          // append_div[0].removeChild(DisplayMark); //←動かない。removechild on nodeのエラー
+          // append_div[0].removeChild(append_div[0].childNodes.item(2)); //←動いた
+          //img要素を、開始タグと終了タグがある状態にして
+          //それを親要素にできればいけるかも
+        }
       }
-      // ON_OFF = !ON_OFF; //値を反転
-      document.getElementById('container').innerHTML = html;
+      ON_OFF = !ON_OFF; //値を反転
     },
     error: function(response) {
       console.log('データの取得に失敗しました');
@@ -121,7 +131,7 @@ function receiveCoordsFromServer() {
 // window.onload = onLoad;
 
 
-const button = document.getElementById('button');
+// const button = document.getElementById('button');
 $('#button').click(function() {
     receiveCoordsFromServer();
 });
