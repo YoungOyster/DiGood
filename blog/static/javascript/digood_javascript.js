@@ -98,7 +98,6 @@ function receiveCoordsFromServer() {
         DisplayMark.style.top = original_Y + 'px';
         DisplayMark.style.left = original_X + 'px';
         document.getElementById('container').innerHTML = html;
-        const append_div = document.getElementsByClassName('layout');
         if (ON_OFF){
           // document.querySelector('layout').appendChild(DisplayMark);
           document.getElementById('main').appendChild(DisplayMark);
@@ -111,17 +110,30 @@ function receiveCoordsFromServer() {
           //visibleを使うと空間は空いたままになるからdisplayよりそっちの方がいいかも。
           // append_div[0].removeChild(DisplayMark); //←動かない。removechild on nodeのエラー
           // append_div[0].removeChild(append_div[0].childNodes.item(2)); //←動いた
+          // document.getElementById('main').removeChild(DisplayMark);
           //img要素を、開始タグと終了タグがある状態にして
           //それを親要素にできればいけるかも
         }
       }
       ON_OFF = !ON_OFF; //値を反転
+      console.log(ON_OFF)
     },
     error: function(response) {
       console.log('データの取得に失敗しました');
     },
   });
 }
+
+//画像サイズの変更に合わせてマークの位置を調整
+function mark_Position(){
+  //表示されているときはhtml内にDisplayMarkのブロックが存在している
+  //表示はしないが要素として元の画像サイズを持たせるとか
+  //DisplayMarkの座標、位置を読み込んで計算とか
+  const image = document.getElementById('img');
+}
+
+
+window.addEventListener('resize', mark_Position);
 
 // //ページ読み込み時に実行
 // function onLoad() {
@@ -130,97 +142,6 @@ function receiveCoordsFromServer() {
 
 // window.onload = onLoad;
 
-
-// const button = document.getElementById('button');
 $('#button').click(function() {
     receiveCoordsFromServer();
 });
-
-
-// //座標計算)
-// $('img').click(function(event) {
-//     const x = event.offsetX;
-//     const y = event.offsetY;
-//     const image = document.getElementById('img');
-//     const original_Width = image.naturalWidth;
-//     const original_Height = image.naturalHeight;
-//     const Width = image.width;
-//     const Height = image.height;
-//     const original_X = x * (original_Width / Width);
-//     const original_Y = y * (original_Height / Height);
-//     console.log('画像サイズWidth', Width, '画像サイズoriginal_Width', original_Width);
-//     console.log('クリックした箇所の座標：', x, y,  '計算後の座標', original_X, original_Y);
-
-//   //クリックしたときの画像サイズも記録
-//   //ブラウザで開いたときにDBから値をとってきて
-//   //DBの位置と画像サイズを見て、今開いた人の画像サイズを見て、ハートマークを表示できる。
-//   //例） Aさん（x:23, y:45, image.width:300）
-//   //Bさん（width:600）
-//   //Bさんの画面上ではx:46, y:90の位置に表示されるってことになる
-// });
-
-
-
-// //データベースからデータを取得する
-// $('img').click(function(event) {
-//   DisplayHeartOnScreen();
-//   receiveCoordsFromServer();
-//   });
-
-//   //ハートマークを画像上に表示する
-//   function DisplayHeartOnScreen(){
-//     const image = document.getElementById('img');
-//     image.addEventListener('click', function(event) {
-//       const x = event.offsetX;
-//       const y = event.offsetY;
-//       const heart = document.createElement('div');
-//       heart.innerHTML = '&#128147;';
-//       heart.style.position = 'absolute';
-//       heart.style.top = y + 'px';
-//       heart.style.left = x + 'px';
-//       document.body.appendChild(heart);
-    
-//       setTimeout(function() {
-//         document.body.removeChild(heart);
-//       }, 1000);
-//     });
-//   }
-
-//   // サーバーから座標を受信する関数
-//   function receiveCoordsFromServer() {
-//     $.ajax({
-//       url: 'server/',
-//       type: 'GET',
-//       success: function(response) { 
-//         console.log(response);
-//         console.log('要素数：' + response.length)
-//         let html = '';
-//         console.log(response[0])
-//         for(let i = 0; i < response.length; i++){
-//           let htmlParts = '<p>' + response[i] + '</p>';
-//           html += htmlParts;
-//         }
-//         // 変数に格納したHTMLを出力
-//         document.getElementById('container').innerHTML = html;
-//       },
-//       error: function(response) {
-//         console.log('データの取得に失敗しました');
-//       },
-//     });
-//   }
-
-
-  // success: function(response) { 
-  //   var response_stringify = JSON.stringify(response); //JSONをオブジェクトから文字列に変換
-  //   var response_json = JSON.parse(response_stringify); //文字列からオブジェクトに変換
-  //   let html = '';
-  //   var response_coordsX, response_coordsY;
-  //   for(let i = 0; i < response_json.length; i++){
-  //     response_coordsX = response_json[i]['coords_x'];
-  //     response_coordsY = response_json[i]['coords_x'];
-  //     console.log(response_coordsX, response_coordsY)
-  //     // console.log(response[i]);
-  //     // console.log(response[i].coords_x);
-  //     let htmlParts = '<p>' + i + '番目のx座標：' + response_coordsX + ', y座標：' + response_coordsY + '</p>'
-  //     html += htmlParts;
-  //   }
