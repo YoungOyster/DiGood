@@ -36,11 +36,9 @@ def get_coords(request):
         # response = JsonResponse({'Coords': Coords}, safe=False)
 
         Coords_qsList = Coordinates.objects.values('coords_x', 'coords_y', 'click_Width', 'click_Height', 'click_mark') #QuerySetのリスト
-        print(Coords_qsList)
         List = []
         for item in Coords_qsList:
             List.append(list(item.values()))
-        print(List)
         response = JsonResponse(List, safe=False)
     else:
         response = HttpResponseBadRequest('Invalid request method')
