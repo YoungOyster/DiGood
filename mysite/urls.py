@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 #blog アプリからURLをインポートするだけ
 urlpatterns = [
@@ -23,3 +25,5 @@ urlpatterns = [
     path('view/', include('blog.urls')),
     path('server/', include('blog.urls'))
 ]
+if settings.DEBUG:  #ローカル環境の時のみ以下を実行
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

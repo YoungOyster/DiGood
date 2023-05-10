@@ -4,7 +4,7 @@ $('#heart').click(function() {
   mark = '&#128147;';
 });
 $('#star').click(function() {
-  mark = '&#9733;';
+  mark = '&#128147;';
 });
 
 
@@ -101,7 +101,7 @@ function receiveCoordsFromServer() {
           mark_div.push(displaymark)
           document.getElementById('main').appendChild(displaymark);
           
-          receive_date.push(response)
+          receive_date.push(response);
         }
       }
       else{
@@ -133,26 +133,31 @@ function mark_Position(){
   //表示されているときはhtml内にdisplaymarkのブロックが存在している
   //表示はしないが要素として元の画像サイズを持たせるとか
   //displaymarkの座標、位置を読み込んで計算とか
-  if (mark_div.length != 0){
-    const image = document.getElementById('img');
-    console.log(image.width);
-    console.log(image.height);
-    for (let i = 0; i < receive_date.length; i++){
-      x = receive_date[i][0];
-      y = receive_date[i][1];
-      Width = receive_date[i][2];
-      Height = receive_date[i][3];
-      console.log(x, y, Width, Height);
-      const original_X = x * (image.width / Width);
-      const original_Y = y * (image.height / Height);
-      console.log(mark_div[i]);
-      mark_div[i].style.top = original_Y + 'px';
-      mark_div[i].left = original_X + 'px';
-    }
-  }
-  else{
-    ;
-  }
+  console.log("hello");
+  console.log(mark_div[0].style.top);
+  mark_div[0].style.top = 50 + 'px';
+  console.log(mark_div[0].style.top);
+
+  // if (mark_div.length != 0){
+  //   const image = document.getElementById('img');
+  //   console.log(image.width);
+  //   console.log(image.height);
+  //   for (let i = 0; i < receive_date.length; i++){
+  //     x = receive_date[i][0];
+  //     y = receive_date[i][1];
+  //     Width = receive_date[i][2];
+  //     Height = receive_date[i][3];
+  //     console.log(x, y, Width, Height);
+  //     const original_X = x * (image.width / Width);
+  //     const original_Y = y * (image.height / Height);
+  //     console.log(mark_div[i]);
+  //     mark_div[i].style.top = original_Y + 'px';
+  //     mark_div[i].left = original_X + 'px';
+  //   }
+  // }
+  // else{
+  //   ;
+  // }
 }
 
 
