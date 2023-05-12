@@ -10,10 +10,14 @@ import json
 def top(request):
     return render(request, 'blog/post_list.html')
 
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
 #引数のrequest
 @csrf_exempt
 def save_coords(request):
-    if request.is_ajax(): #リクエストがAJAXリクエストかどうかを判定。
+    # if request.is_ajax(): #リクエストがAJAXリクエストかどうかを判定。
+    if is_ajax(request):
         if request.method == 'POST':
             c_x = request.POST.get('coords_x') #POSTリクエストで送信された"coords_x"というデータを保持する辞書型オブジェクトを生成
             c_y = request.POST.get('coords_y')  #request.POST[キー名('coords_x')]でもできるかも
