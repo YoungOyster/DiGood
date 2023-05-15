@@ -4,7 +4,7 @@ $('#heart').click(function() {
   mark = '&#128147;';
 });
 $('#star').click(function() {
-  mark = '&#128147;';
+  mark = '&#9733;';
 });
 
 
@@ -13,7 +13,7 @@ let on_off = true;
 //マーク表示用ブロックの保管
 let mark_div = [];
 //受信データ保管用
-// let receive_date = [];
+//let receive_date = [];
 let receive_date;
 
 
@@ -102,7 +102,7 @@ function receiveCoordsFromServer() {
           mark_div.push(displaymark)
           document.getElementById('main').appendChild(displaymark);
           
-          // receive_date.push(response);
+//          receive_date.push(response);
           receive_date = response;
         }
       }
@@ -135,29 +135,19 @@ function mark_Position(){
   //表示されているときはhtml内にdisplaymarkのブロックが存在している
   //表示はしないが要素として元の画像サイズを持たせるとか
   //displaymarkの座標、位置を読み込んで計算とか
-  // console.log("hello");
-  // console.log(mark_div[0])
-  // console.log(mark_div[0].style.top);
-  // mark_div[0].style.top = 50 + 'px';
-  // console.log(mark_div[0].style.top);
-
   if (mark_div.length != 0){
     const image = document.getElementById('img');
-    // console.log(image.width);
-    // console.log(image.height);
     for (let i = 0; i < receive_date.length; i++){
-      //let x = receive_date[i][0];
-      //let y = receive_date[i][1];
-      //let Width = receive_date[i][2];
-      //let Height = receive_date[i][3];
       let x = receive_date[i][0];
       let y = receive_date[i][1];
-      console.log(x, y, Width, Height);
+//      Width = receive_date[i][2];
+//      Height = receive_date[i][3];
+//      console.log(x, y, Width, Height);
       const original_X = x * (image.width / Width);
       const original_Y = y * (image.height / Height);
-      mark_div[i].style.top = original_Y + 'px';
-      mark_div[i].style.left = original_X + 'px';
-      console.log(mark_div[i], style.top);
+      mark_div[i].style.top = original_Y + "px";
+      mark_div[i].style.left = original_X + "px";
+      console.log(mark_div[i].style.top);
     }
   }
   else{

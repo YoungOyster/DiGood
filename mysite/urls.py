@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('blog.urls')), #blog.urls をインポートする。'http://127.0.0.1:8000/' に来たリクエストは blog.urls へリダイレクトするようになる
     path('view/', include('blog.urls')),
     path('server/', include('blog.urls'))
-]
+]+static(settings.STATIC_URL, document_root = settings.STATICFILES_DIRS)
 if settings.DEBUG:  #ローカル環境の時のみ以下を実行
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    #MEDIA_ROOTのディレクトリ内のファイルをMEDIA_URL起点のurlでアクセスできるようになる。

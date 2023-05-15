@@ -33,4 +33,3 @@ class Coordinates(models.Model):
     click_Width = models.FloatField('クリック時のWidth', default=0)
     click_Height = models.FloatField('クリック時のHeight', default=0)
     click_mark = models.CharField('クリック時のマーク', default='&#128147;', max_length=50)
-    

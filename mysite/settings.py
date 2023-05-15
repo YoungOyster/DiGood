@@ -31,12 +31,12 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin', #管理(admin)サイト
+    'django.contrib.auth',  #認証システム
+    'django.contrib.contenttypes',  #コンテンツタイプフレームワーク
+    'django.contrib.sessions',  #セッションフレームワーク
+    'django.contrib.messages',  #メッセージフレームワーク
+    'django.contrib.staticfiles',   #静的ファイルの管理フレームワーク
     'blog.apps.BlogConfig',
 ]
 
@@ -120,9 +120,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFIELS_DIRS = [
+    os.path.join(BASE_DIR, 'static/')   #htmlファイルなどから読み込むstaticフォルダ
+]
 
-MEDIA_URL = '/media/' #ブラウザからアクセスする際のアドレス
+MEDIA_URL = '/static/media/' #ブラウザからアクセスする際のアドレス
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #画像ファイルを読み込みにいく先のフォルダ
+#メディアファイルのURLは「http://アプリのドメイン+MEDIA_URL+メディアファイル名」となる
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
