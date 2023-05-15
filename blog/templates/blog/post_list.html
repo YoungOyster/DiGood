@@ -25,9 +25,11 @@
     <div id="mark">
       <button type="button" id="heart">
         <!-- <img src="..\..\blog\media\valentinesday_heart.png" /> -->
-        <img src="{% static 'media\valentinesday_heart.png' %}">
+        <img src="{% static 'marks/valentinesday_heart.png' %}" width="10" height="10">
       </button>
-      <button type="button" id="star">&#9733;</button>
+      <button type="button" id="star">
+        <img src="{% static 'marks/body_finger_ok.png' %}" width="10" height="10">
+      </button>
     </div>
      <button type="button" id="button">マーク表示切り替え</button>
     <div id="container"></div> <!--JSで生成したHTMLを入れる箱-->

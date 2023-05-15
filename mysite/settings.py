@@ -121,11 +121,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFIELS_DIRS = [
-    os.path.join(BASE_DIR, 'static/')   #htmlファイルなどから読み込むstaticフォルダ
+    os.path.join(BASE_DIR, 'blog/static/')   #htmlファイルなどから読み込むstaticフォルダ
 ]
 
-MEDIA_URL = '/static/media/' #ブラウザからアクセスする際のアドレス
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #画像ファイルを読み込みにいく先のフォルダ
+MEDIA_URL = '/media/' #ブラウザからアクセスする際のアドレス
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media') #画像ファイルを読み込みにいく先のフォルダ
 #メディアファイルのURLは「http://アプリのドメイン+MEDIA_URL+メディアファイル名」となる
 
 # Default primary key field type
