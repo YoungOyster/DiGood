@@ -1,11 +1,25 @@
 //マーク選択
-let mark = '&#128147;'; //グローバル変数。初期値はハート。
+// let mark = "<img src=\"{% static 'marks/valentinesday_heart.png' %}\" width=\"10\" height=\"10\">"; //グローバル変数。初期値はハート。
+
+// $('#heart').click(function() {
+//   mark = '&#128147;';
+// });
+// $('#star').click(function() {
+//   mark = '&#9733;';
+// });
+
+//マーク選択
+//（注）シングルクォート(')じゃなくてバッククォート(`)を使わないとテンプレートリテラルが使えない
+let mark = `<img src="${heartMarkPath}" width="30" height="30">`; // グローバル変数。初期値はハート。
+
 $('#heart').click(function() {
-  mark = '&#128147;';
+  mark = `<img src="${heartMarkPath}" width="30" height="30">`;
 });
 $('#star').click(function() {
-  mark = '&#9733;';
+  mark = `<img src="${starMarkPath}" width="30" height="30">`;
 });
+
+
 
 
 //表示非表示切り替えフラグ
@@ -22,12 +36,12 @@ let receive_date;
 //座標とサイズを取得
 function get_Size_Coords(event){
   //クリックした座標の取得
-  var x = event.offsetX;
-  var y = event.offsetY;
+  let x = event.offsetX;
+  let y = event.offsetY;
   console.log('クリックした箇所の座標：', x, y);
   console.log('クリックしたときのマーク:', mark);
   //クリック時のマーク表示
-  const displaymark = document.createElement('div');
+  let displaymark = document.createElement('div');
   displaymark.innerHTML = mark;
   displaymark.style.position = 'absolute';
   displaymark.style.top = y + 'px';
@@ -94,7 +108,7 @@ function receiveCoordsFromServer() {
           html += htmlParts;
           document.getElementById('container').innerHTML = html;
           //DBの座標にマーク表示
-          const displaymark = document.createElement('div');  //idを割り振ったほうがいい？
+          let displaymark = document.createElement('div');  //idを割り振ったほうがいい？
           displaymark.innerHTML = response[i][4];
           displaymark.style.position = 'absolute';
           displaymark.style.top = original_Y + 'px';
