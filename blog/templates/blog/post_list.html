@@ -8,14 +8,14 @@
     <title>Static Template</title>
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script async src="{% static 'javascript\digood_javascript_BackUP_2.js' %}"></script>
+    <script async src="{% static 'javascript/digood_javascript.js' %}"></script>
   </head>
   <body>
-    <div class="layout">
+    <div id="main" class="layout"> <!-- class名は同名を付けられる -->
       <img
         id="img"
         class="img"
-        src="https://www.nikon-image.com/products/mirrorless/lineup/z_50/img/sample/pic_01_l.jpg"
+        src="{% static 'marks\AImade_illust.png' %}"
       />
       <!-- <div id="comment" class="comment">
         <h2 id="target_title"></h2>
@@ -23,10 +23,19 @@
       </div> -->
     </div>
     <div id="mark">
-      <button type="button" id="heart">&#128147;</button>
-      <button type="button" id="star">&#9733;</button>
+      <button type="button" id="heart">
+        <!-- <img src="..\..\blog\media\valentinesday_heart.png" /> -->
+        <img src="{% static 'marks/valentinesday_heart.png' %}" width="10" height="10">
+      </button>
+      <button type="button" id="star">
+        <img src="{% static 'marks/body_finger_ok.png' %}" width="10" height="10">
+      </button>
     </div>
      <button type="button" id="button">マーク表示切り替え</button>
     <div id="container"></div> <!--JSで生成したHTMLを入れる箱-->
+    <script>
+      const heartMarkPath = "{% static 'marks/valentinesday_heart.png' %}";
+      const starMarkPath = "{% static 'marks/body_finger_ok.png' %}";
+    </script>    
   </body>
 </html>
