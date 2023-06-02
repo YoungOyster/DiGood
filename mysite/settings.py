@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFIELS_DIRS = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'blog/static/')   #htmlファイルなどから読み込むstaticフォルダ
 ]
 

@@ -3,6 +3,7 @@ from . import views #blogアプリの全てのviewをインポート
 
 urlpatterns = [
     path('', views.top, name='top_page'),
+    path('home/', views.home, name='home_page'),
     path('view/', views.save_coords, name='save_coords'),
     path('server/', views.get_coords, name='get_coords'),
 ]
